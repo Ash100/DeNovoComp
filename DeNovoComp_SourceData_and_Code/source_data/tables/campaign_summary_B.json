@@ -1,0 +1,17 @@
+{
+  "campaign": "B",
+  "title": "CNS-oriented",
+  "baseline_mean": 0.3603673003988673,
+  "designed_mean": 0.9094815131848788,
+  "baseline_median": 0.2654245368213449,
+  "designed_median": 0.9399549535723091,
+  "designed_max": 0.9646813822628776,
+  "rl_first": 0.3511614203453064,
+  "rl_last": 0.9034750461578369,
+  "rl_best_overall": 0.9959022402763367,
+  "n_designed": 2000,
+  "n_designed_valid": 2000,
+  "baseline_gate_pass": 0.9695,
+  "designed_gate_pass": 1.0,
+  "minutes": 1.0169282793998717
+}

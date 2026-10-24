@@ -1,0 +1,21 @@
+{
+  "campaign": "D",
+  "title": "Substructure-constrained (pyridine required)",
+  "median": 0.0,
+  "mean": 0.04610218358028776,
+  "q95": 0.5698905796905263,
+  "maximum": 0.9983657906294728,
+  "frac_above_0p5": 0.0505,
+  "gate_pass_fraction": 0.0665,
+  "per_objective_mean_desirability": {
+    "MW": 0.8970154135338345,
+    "LogP": 0.8394812865497076,
+    "TPSA": 0.943345864661654,
+    "HBD": 0.9806094182825486,
+    "HBA": 0.9830220713073006,
+    "RotB": 0.9332153914197259,
+    "AromaticRings": 1.0,
+    "QED": 0.5827980425400635,
+    "SA": 0.8051807955207703
+  }
+}

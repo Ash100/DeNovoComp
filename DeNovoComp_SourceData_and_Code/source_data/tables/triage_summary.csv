@@ -1,0 +1,6 @@
+set,n_GO,n_CAUTION,n_NOGO,n_total,go_scaffolds
+baseline,244,802,952,1998,211
+designed_A,71,303,1048,1422,67
+designed_B,50,107,49,206,35
+designed_C,12,89,148,249,10
+designed_D,0,151,289,440,0

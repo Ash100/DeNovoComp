@@ -1,0 +1,19 @@
+{
+  "n_params": 1809408,
+  "epochs": 6,
+  "steps": 1170,
+  "steps_per_epoch": 195,
+  "train_minutes": 18.978152592976887,
+  "epoch_mean_loss": [
+    2.079961645297515,
+    1.3858075667650271,
+    1.2553200299923237,
+    1.1865120362012813,
+    1.146244992965307,
+    1.1287096659342448
+  ],
+  "final_smoothed_loss": 1.1350670443446056,
+  "initial_smoothed_loss": 4.31276798248291,
+  "raw_decode_validity": 0.994,
+  "sa_source": "rdkit_contrib"
+}

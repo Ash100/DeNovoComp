@@ -1,0 +1,1431 @@
+{
+  "config": {
+    "RUN_LABEL": "DeNovoChem reference run, CPU-only (2 vCPU, 7 GB RAM, no GPU)",
+    "SEED": 42,
+    "N_TRAIN_MAX": 25000,
+    "MAX_LEN": 72,
+    "D_MODEL": 192,
+    "N_HEADS": 6,
+    "N_LAYERS": 4,
+    "DROPOUT": 0.1,
+    "BATCH_SIZE": 128,
+    "LR": 0.0003,
+    "EPOCHS": 6,
+    "N_SAMPLES": 2000,
+    "TEMPERATURE": 1.0,
+    "RL_STEPS": 80,
+    "RL_BATCH": 64,
+    "RL_LR": 0.0001,
+    "FP_BITS": 2048,
+    "FP_RADIUS": 2,
+    "GO_QED": 0.6,
+    "GO_SA": 4.5,
+    "CAUTION_QED": 0.45,
+    "CAUTION_SA": 6.0,
+    "AD_BASIS_MAX": 1500,
+    "AD_COMPONENTS": 30
+  },
+  "curation": {
+    "raw_smiles": 249455,
+    "parse_or_size_dropped": 0,
+    "after_canon": 249455,
+    "after_dedup": 249455,
+    "selfies_encodable": 249455,
+    "after_maxlen": 249455,
+    "final_training": 25000,
+    "vocab_size": 80,
+    "seq_len": 74,
+    "selfies_len_p50": 37.0,
+    "selfies_len_p99": 58.0,
+    "selfies_len_max": 72,
+    "train_desc_means": {
+      "MW": 333.1581952000001,
+      "LogP": 2.489231354000001,
+      "TPSA": 65.357522,
+      "HBD": 1.2304,
+      "HBA": 3.739,
+      "QED": 0.7328136229567901
+    }
+  },
+  "prior": {
+    "n_params": 1809408,
+    "epochs": 6,
+    "steps": 1170,
+    "steps_per_epoch": 195,
+    "train_minutes": 18.978152592976887,
+    "epoch_mean_loss": [
+      2.079961645297515,
+      1.3858075667650271,
+      1.2553200299923237,
+      1.1865120362012813,
+      1.146244992965307,
+      1.1287096659342448
+    ],
+    "final_smoothed_loss": 1.1350670443446056,
+    "initial_smoothed_loss": 4.31276798248291,
+    "raw_decode_validity": 0.994,
+    "sa_source": "rdkit_contrib"
+  },
+  "ad_meta": {
+    "basis": 1500,
+    "components": 30,
+    "h_star": 0.06
+  },
+  "embedding": "UMAP",
+  "campaign_titles": {
+    "A": "General drug-like",
+    "B": "CNS-oriented",
+    "C": "Analogue design (celecoxib reference)",
+    "D": "Substructure-constrained (pyridine required)"
+  },
+  "specs": {
+    "A": {
+      "title": "General drug-like",
+      "properties": {
+        "MW": {
+          "mode": "range",
+          "min": 250,
+          "max": 450,
+          "weight": 1.0
+        },
+        "LogP": {
+          "mode": "range",
+          "min": 1.0,
+          "max": 4.0,
+          "weight": 1.0
+        },
+        "TPSA": {
+          "mode": "range",
+          "min": 40,
+          "max": 120,
+          "weight": 1.0
+        },
+        "HBD": {
+          "mode": "max_cap",
+          "cap": 3,
+          "weight": 0.5
+        },
+        "HBA": {
+          "mode": "max_cap",
+          "cap": 7,
+          "weight": 0.5
+        },
+        "RotB": {
+          "mode": "max_cap",
+          "cap": 8,
+          "weight": 0.5
+        },
+        "AromaticRings": {
+          "mode": "range",
+          "min": 1,
+          "max": 3,
+          "weight": 0.5
+        },
+        "QED": {
+          "mode": "maximize",
+          "lo": 0.3,
+          "hi": 0.9,
+          "weight": 1.0
+        }
+      },
+      "reference_smiles": null,
+      "similarity": {
+        "min": 0.35,
+        "max": 0.7,
+        "weight": 1.0
+      },
+      "required_smarts": [],
+      "forbidden_smarts": [
+        "[N+](=O)[O-]"
+      ],
+      "include_sa": true,
+      "sa_target": 3.0,
+      "sa_weight": 0.8,
+      "aggregation": "geometric"
+    },
+    "B": {
+      "title": "CNS-oriented",
+      "properties": {
+        "MW": {
+          "mode": "range",
+          "min": 200,
+          "max": 400,
+          "weight": 1.0
+        },
+        "LogP": {
+          "mode": "range",
+          "min": 2.0,
+          "max": 4.0,
+          "weight": 1.0
+        },
+        "TPSA": {
+          "mode": "max_cap",
+          "cap": 90,
+          "weight": 1.5
+        },
+        "HBD": {
+          "mode": "max_cap",
+          "cap": 2,
+          "weight": 1.0
+        },
+        "HBA": {
+          "mode": "max_cap",
+          "cap": 7,
+          "weight": 0.5
+        },
+        "RotB": {
+          "mode": "max_cap",
+          "cap": 8,
+          "weight": 0.5
+        },
+        "AromaticRings": {
+          "mode": "range",
+          "min": 1,
+          "max": 3,
+          "weight": 0.5
+        },
+        "QED": {
+          "mode": "maximize",
+          "lo": 0.3,
+          "hi": 0.9,
+          "weight": 1.0
+        }
+      },
+      "reference_smiles": null,
+      "similarity": {
+        "min": 0.35,
+        "max": 0.7,
+        "weight": 1.0
+      },
+      "required_smarts": [],
+      "forbidden_smarts": [
+        "[N+](=O)[O-]"
+      ],
+      "include_sa": true,
+      "sa_target": 3.0,
+      "sa_weight": 0.8,
+      "aggregation": "geometric"
+    },
+    "C": {
+      "title": "Analogue design (celecoxib reference)",
+      "properties": {
+        "MW": {
+          "mode": "range",
+          "min": 250,
+          "max": 450,
+          "weight": 1.0
+        },
+        "LogP": {
+          "mode": "range",
+          "min": 1.0,
+          "max": 4.5,
+          "weight": 1.0
+        },
+        "TPSA": {
+          "mode": "range",
+          "min": 40,
+          "max": 120,
+          "weight": 0.5
+        },
+        "HBD": {
+          "mode": "max_cap",
+          "cap": 3,
+          "weight": 0.5
+        },
+        "QED": {
+          "mode": "maximize",
+          "lo": 0.3,
+          "hi": 0.9,
+          "weight": 0.5
+        }
+      },
+      "reference_smiles": "Cc1ccc(cc1)-c1cc(nn1-c1ccc(cc1)S(N)(=O)=O)C(F)(F)F",
+      "similarity": {
+        "min": 0.15,
+        "max": 0.5,
+        "weight": 2.0
+      },
+      "required_smarts": [],
+      "forbidden_smarts": [
+        "[N+](=O)[O-]"
+      ],
+      "include_sa": true,
+      "sa_target": 3.0,
+      "sa_weight": 0.8,
+      "aggregation": "geometric"
+    },
+    "D": {
+      "title": "Substructure-constrained (pyridine required)",
+      "properties": {
+        "MW": {
+          "mode": "range",
+          "min": 250,
+          "max": 450,
+          "weight": 1.0
+        },
+        "LogP": {
+          "mode": "range",
+          "min": 1.0,
+          "max": 4.0,
+          "weight": 1.0
+        },
+        "TPSA": {
+          "mode": "range",
+          "min": 40,
+          "max": 120,
+          "weight": 1.0
+        },
+        "HBD": {
+          "mode": "max_cap",
+          "cap": 3,
+          "weight": 0.5
+        },
+        "HBA": {
+          "mode": "max_cap",
+          "cap": 7,
+          "weight": 0.5
+        },
+        "RotB": {
+          "mode": "max_cap",
+          "cap": 8,
+          "weight": 0.5
+        },
+        "AromaticRings": {
+          "mode": "range",
+          "min": 1,
+          "max": 3,
+          "weight": 0.5
+        },
+        "QED": {
+          "mode": "maximize",
+          "lo": 0.3,
+          "hi": 0.9,
+          "weight": 1.0
+        }
+      },
+      "reference_smiles": null,
+      "similarity": {
+        "min": 0.35,
+        "max": 0.7,
+        "weight": 1.0
+      },
+      "required_smarts": [
+        "c1ccncc1"
+      ],
+      "forbidden_smarts": [
+        "[N+](=O)[O-]"
+      ],
+      "include_sa": true,
+      "sa_target": 3.0,
+      "sa_weight": 0.8,
+      "aggregation": "geometric"
+    }
+  },
+  "feasibility": {
+    "A": {
+      "campaign": "A",
+      "title": "General drug-like",
+      "median": 0.2948164313633608,
+      "mean": 0.4121569287415487,
+      "q95": 0.9698351357998652,
+      "maximum": 0.9996383986354634,
+      "frac_above_0p5": 0.3475,
+      "gate_pass_fraction": 0.9695,
+      "per_objective_mean_desirability": {
+        "MW": 0.8292268695203713,
+        "LogP": 0.7898488338777145,
+        "TPSA": 0.8864966907340553,
+        "HBD": 0.9731820526044352,
+        "HBA": 0.9961736179274318,
+        "RotB": 0.9304674938567484,
+        "AromaticRings": 0.45435791645177925,
+        "QED": 0.49155478099177924,
+        "SA": 0.7144214736840723
+      }
+    },
+    "B": {
+      "campaign": "B",
+      "title": "CNS-oriented",
+      "median": 0.2654245368213449,
+      "mean": 0.3603673003988673,
+      "q95": 0.9719239128372844,
+      "maximum": 0.9999389194207366,
+      "frac_above_0p5": 0.287,
+      "gate_pass_fraction": 0.9695,
+      "per_objective_mean_desirability": {
+        "MW": 0.9156194000343818,
+        "LogP": 0.5219626181880691,
+        "TPSA": 0.9454455536727328,
+        "HBD": 0.8685533780299123,
+        "HBA": 0.9961736179274318,
+        "RotB": 0.9304674938567484,
+        "AromaticRings": 0.45435791645177925,
+        "QED": 0.49155478099177924,
+        "SA": 0.7144214736840723
+      }
+    },
+    "C": {
+      "campaign": "C",
+      "title": "Analogue design (celecoxib reference)",
+      "median": 0.4503197038725275,
+      "mean": 0.38653053863097075,
+      "q95": 0.7996795413315378,
+      "maximum": 0.99486057011883,
+      "frac_above_0p5": 0.433,
+      "gate_pass_fraction": 0.9695,
+      "per_objective_mean_desirability": {
+        "MW": 0.8292268695203713,
+        "LogP": 0.8300435816203736,
+        "TPSA": 0.8864966907340553,
+        "HBD": 0.9731820526044352,
+        "QED": 0.49155478099177924,
+        "similarity": 0.25203648289662633,
+        "SA": 0.7144214736840723
+      }
+    },
+    "D": {
+      "campaign": "D",
+      "title": "Substructure-constrained (pyridine required)",
+      "median": 0.0,
+      "mean": 0.04610218358028776,
+      "q95": 0.5698905796905263,
+      "maximum": 0.9983657906294728,
+      "frac_above_0p5": 0.0505,
+      "gate_pass_fraction": 0.0665,
+      "per_objective_mean_desirability": {
+        "MW": 0.8970154135338345,
+        "LogP": 0.8394812865497076,
+        "TPSA": 0.943345864661654,
+        "HBD": 0.9806094182825486,
+        "HBA": 0.9830220713073006,
+        "RotB": 0.9332153914197259,
+        "AromaticRings": 1.0,
+        "QED": 0.5827980425400635,
+        "SA": 0.8051807955207703
+      }
+    }
+  },
+  "campaign": {
+    "A": {
+      "campaign": "A",
+      "title": "General drug-like",
+      "baseline_mean": 0.4121569287415487,
+      "designed_mean": 0.637917557039573,
+      "baseline_median": 0.2948164313633608,
+      "designed_median": 0.7371562062739052,
+      "designed_max": 0.9980360988109014,
+      "rl_first": 0.3571985363960266,
+      "rl_last": 0.6984666585922241,
+      "rl_best_overall": 0.999949038028717,
+      "n_designed": 2000,
+      "n_designed_valid": 2000,
+      "baseline_gate_pass": 0.9695,
+      "designed_gate_pass": 1.0,
+      "minutes": 1.7860576470692953
+    },
+    "B": {
+      "campaign": "B",
+      "title": "CNS-oriented",
+      "baseline_mean": 0.3603673003988673,
+      "designed_mean": 0.9094815131848788,
+      "baseline_median": 0.2654245368213449,
+      "designed_median": 0.9399549535723091,
+      "designed_max": 0.9646813822628776,
+      "rl_first": 0.3511614203453064,
+      "rl_last": 0.9034750461578369,
+      "rl_best_overall": 0.9959022402763367,
+      "n_designed": 2000,
+      "n_designed_valid": 2000,
+      "baseline_gate_pass": 0.9695,
+      "designed_gate_pass": 1.0,
+      "minutes": 1.0169282793998717
+    },
+    "C": {
+      "campaign": "C",
+      "title": "Analogue design (celecoxib reference)",
+      "baseline_mean": 0.38653053863097075,
+      "designed_mean": 0.7100903099425955,
+      "baseline_median": 0.4503197038725275,
+      "designed_median": 0.7388054814982024,
+      "designed_max": 0.9070392897648458,
+      "rl_first": 0.3438167870044708,
+      "rl_last": 0.7121509313583374,
+      "rl_best_overall": 0.9621041417121887,
+      "n_designed": 2000,
+      "n_designed_valid": 2000,
+      "baseline_gate_pass": 0.9695,
+      "designed_gate_pass": 1.0,
+      "minutes": 1.1550851464271545
+    },
+    "D": {
+      "campaign": "D",
+      "title": "Substructure-constrained (pyridine required)",
+      "baseline_mean": 0.04610218358028776,
+      "designed_mean": 0.6207741187196577,
+      "baseline_median": 0.0,
+      "designed_median": 0.7040823697800588,
+      "designed_max": 0.8926670629638008,
+      "rl_first": 0.015560819767415524,
+      "rl_last": 0.6142865419387817,
+      "rl_best_overall": 0.9872576594352722,
+      "n_designed": 2000,
+      "n_designed_valid": 2000,
+      "baseline_gate_pass": 0.0665,
+      "designed_gate_pass": 0.9285,
+      "minutes": 1.0874312241872153
+    }
+  },
+  "benchmarks": {
+    "baseline": {
+      "n": 2000.0,
+      "validity": 0.983,
+      "uniqueness": 0.999,
+      "novelty": 1.0,
+      "int_diversity": 0.9081379152142396
+    },
+    "designed_A": {
+      "n": 2000.0,
+      "validity": 0.993,
+      "uniqueness": 0.711,
+      "novelty": 1.0,
+      "int_diversity": 0.7659865235897126
+    },
+    "designed_B": {
+      "n": 2000.0,
+      "validity": 0.998,
+      "uniqueness": 0.103,
+      "novelty": 1.0,
+      "int_diversity": 0.2124796595967464
+    },
+    "designed_C": {
+      "n": 2000.0,
+      "validity": 0.998,
+      "uniqueness": 0.1245,
+      "novelty": 1.0,
+      "int_diversity": 0.2395569086229932
+    },
+    "designed_D": {
+      "n": 2000.0,
+      "validity": 0.993,
+      "uniqueness": 0.22,
+      "novelty": 1.0,
+      "int_diversity": 0.3594835778947983
+    }
+  },
+  "kl": {
+    "baseline": {
+      "MW": 0.3401496607916772,
+      "LogP": 0.1228596132487732,
+      "TPSA": 0.0635930808341738,
+      "QED": 0.5840053157567937
+    },
+    "designed_A": {
+      "MW": 1.607239942431709,
+      "LogP": 1.0758721110502227,
+      "TPSA": 0.429522886636739,
+      "QED": 1.305333092219473
+    },
+    "designed_B": {
+      "MW": 7.218618932310723,
+      "LogP": 2.6570438253708626,
+      "TPSA": 8.167358206562618,
+      "QED": 3.904016518230718
+    },
+    "designed_C": {
+      "MW": 6.563111470612707,
+      "LogP": 4.582616792118502,
+      "TPSA": 2.786850749022183,
+      "QED": 4.114146243024274
+    },
+    "designed_D": {
+      "MW": 4.969392882373152,
+      "LogP": 3.227675573592024,
+      "TPSA": 1.8662656470833452,
+      "QED": 4.642574042926036
+    }
+  },
+  "druglike": {
+    "baseline": {
+      "passes_ro5": 1.0,
+      "passes_veber": 0.9565,
+      "QED": 0.5827958551106396,
+      "MW": 293.76425950000004,
+      "LogP": 2.030589590000001,
+      "TPSA": 60.223845000000004,
+      "ro5_violations": 0.0245
+    },
+    "designed_A": {
+      "passes_ro5": 1.0,
+      "passes_veber": 0.9965,
+      "QED": 0.5474953495103011,
+      "MW": 238.01912900000002,
+      "LogP": 1.8952654700000002,
+      "TPSA": 51.066905,
+      "ro5_violations": 0.001
+    },
+    "designed_B": {
+      "passes_ro5": 1.0,
+      "passes_veber": 1.0,
+      "QED": 0.7205080496442814,
+      "MW": 197.159641,
+      "LogP": 2.827058365000001,
+      "TPSA": 13.099939999999998,
+      "ro5_violations": 0.0005
+    },
+    "designed_C": {
+      "passes_ro5": 1.0,
+      "passes_veber": 1.0,
+      "QED": 0.5570440455325901,
+      "MW": 232.6739595,
+      "LogP": 1.416197005,
+      "TPSA": 80.50355,
+      "ro5_violations": 0.0
+    },
+    "designed_D": {
+      "passes_ro5": 1.0,
+      "passes_veber": 1.0,
+      "QED": 0.4673108843470868,
+      "MW": 231.2358535,
+      "LogP": 1.99006377,
+      "TPSA": 61.658045,
+      "ro5_violations": 0.0
+    }
+  },
+  "synth": {
+    "baseline": {
+      "SAscore": 4.47126777769885,
+      "BertzCT": 507.07488771722996,
+      "atoms_ok": 1.0,
+      "synth_score": 0.5903457885173475
+    },
+    "designed_A": {
+      "SAscore": 3.232791113333408,
+      "BertzCT": 557.7088338628782,
+      "atoms_ok": 1.0,
+      "synth_score": 0.6427412119161577
+    },
+    "designed_B": {
+      "SAscore": 3.9476342173408865,
+      "BertzCT": 482.14752422242253,
+      "atoms_ok": 1.0,
+      "synth_score": 0.6508273523345566
+    },
+    "designed_C": {
+      "SAscore": 2.6994507646274353,
+      "BertzCT": 430.2473984572114,
+      "atoms_ok": 1.0,
+      "synth_score": 0.7794485888493211
+    },
+    "designed_D": {
+      "SAscore": 5.723987706534742,
+      "BertzCT": 683.2344922458146,
+      "atoms_ok": 1.0,
+      "synth_score": 0.36199735362856794
+    }
+  },
+  "sa_source": "rdkit_contrib",
+  "scaffold": {
+    "training": {
+      "n_valid": 4977.0,
+      "n_scaffolds": 4139.0,
+      "scaffold_entropy": 8.030985235126153,
+      "top10_share": 0.0705244122965642
+    },
+    "baseline": {
+      "n_valid": 1823.0,
+      "n_scaffolds": 1469.0,
+      "scaffold_entropy": 6.8128747551259385,
+      "top10_share": 0.1459133296763576
+    },
+    "designed_A": {
+      "n_valid": 1975.0,
+      "n_scaffolds": 804.0,
+      "scaffold_entropy": 4.582597122729521,
+      "top10_share": 0.4749367088607595
+    },
+    "designed_B": {
+      "n_valid": 1997.0,
+      "n_scaffolds": 138.0,
+      "scaffold_entropy": 1.108657319908528,
+      "top10_share": 0.911867801702554
+    },
+    "designed_C": {
+      "n_valid": 1989.0,
+      "n_scaffolds": 92.0,
+      "scaffold_entropy": 0.7773957346255578,
+      "top10_share": 0.9446958270487682
+    },
+    "designed_D": {
+      "n_valid": 1996.0,
+      "n_scaffolds": 148.0,
+      "scaffold_entropy": 1.2721105108449282,
+      "top10_share": 0.8972945891783567
+    }
+  },
+  "alerts": {
+    "baseline": {
+      "pains": 0.027,
+      "brenk": 0.719,
+      "nih": 0.319,
+      "any_alert": 0.732
+    },
+    "designed_A": {
+      "pains": 0.085,
+      "brenk": 0.914,
+      "nih": 0.7965,
+      "any_alert": 0.9465
+    },
+    "designed_B": {
+      "pains": 0.0025,
+      "brenk": 0.05,
+      "nih": 0.011,
+      "any_alert": 0.0515
+    },
+    "designed_C": {
+      "pains": 0.001,
+      "brenk": 0.9885,
+      "nih": 0.8965,
+      "any_alert": 0.989
+    },
+    "designed_D": {
+      "pains": 0.017,
+      "brenk": 0.9765,
+      "nih": 0.043,
+      "any_alert": 0.977
+    }
+  },
+  "ad": {
+    "baseline": {
+      "leverage": 0.011259376040426965,
+      "in_AD": 1.0
+    },
+    "designed_A": {
+      "leverage": 0.00968462453817478,
+      "in_AD": 1.0
+    },
+    "designed_B": {
+      "leverage": 0.01103850017837245,
+      "in_AD": 1.0
+    },
+    "designed_C": {
+      "leverage": 0.011109675656771243,
+      "in_AD": 1.0
+    },
+    "designed_D": {
+      "leverage": 0.011453855088911908,
+      "in_AD": 1.0
+    }
+  },
+  "triage": {
+    "baseline": {
+      "n_GO": 244.0,
+      "n_CAUTION": 802.0,
+      "n_NOGO": 952.0,
+      "n_total": 1998.0,
+      "go_scaffolds": 211.0
+    },
+    "designed_A": {
+      "n_GO": 71.0,
+      "n_CAUTION": 303.0,
+      "n_NOGO": 1048.0,
+      "n_total": 1422.0,
+      "go_scaffolds": 67.0
+    },
+    "designed_B": {
+      "n_GO": 50.0,
+      "n_CAUTION": 107.0,
+      "n_NOGO": 49.0,
+      "n_total": 206.0,
+      "go_scaffolds": 35.0
+    },
+    "designed_C": {
+      "n_GO": 12.0,
+      "n_CAUTION": 89.0,
+      "n_NOGO": 148.0,
+      "n_total": 249.0,
+      "go_scaffolds": 10.0
+    },
+    "designed_D": {
+      "n_GO": 0.0,
+      "n_CAUTION": 151.0,
+      "n_NOGO": 289.0,
+      "n_total": 440.0,
+      "go_scaffolds": 0.0
+    }
+  },
+  "inspec": {
+    "A": {
+      "MW": {
+        "baseline": 0.729,
+        "designed": 0.3545,
+        "change": -0.3745
+      },
+      "LogP": {
+        "baseline": 0.6625,
+        "designed": 0.9045,
+        "change": 0.242
+      },
+      "TPSA": {
+        "baseline": 0.766,
+        "designed": 0.755,
+        "change": -0.011
+      },
+      "HBD": {
+        "baseline": 0.9555,
+        "designed": 0.9965,
+        "change": 0.041
+      },
+      "HBA": {
+        "baseline": 0.989,
+        "designed": 0.999,
+        "change": 0.01
+      },
+      "RotB": {
+        "baseline": 0.885,
+        "designed": 0.9835,
+        "change": 0.0985
+      },
+      "AromaticRings": {
+        "baseline": 0.4595,
+        "designed": 0.9255,
+        "change": 0.4659999999999999
+      },
+      "QED": {
+        "baseline": 0.903,
+        "designed": 0.951,
+        "change": 0.0479999999999999
+      }
+    },
+    "B": {
+      "MW": {
+        "baseline": 0.835,
+        "designed": 0.0985,
+        "change": -0.7364999999999999
+      },
+      "LogP": {
+        "baseline": 0.418,
+        "designed": 0.9805,
+        "change": 0.5625
+      },
+      "TPSA": {
+        "baseline": 0.873,
+        "designed": 1.0,
+        "change": 0.127
+      },
+      "HBD": {
+        "baseline": 0.819,
+        "designed": 1.0,
+        "change": 0.181
+      },
+      "HBA": {
+        "baseline": 0.989,
+        "designed": 1.0,
+        "change": 0.011
+      },
+      "RotB": {
+        "baseline": 0.885,
+        "designed": 1.0,
+        "change": 0.1149999999999999
+      },
+      "AromaticRings": {
+        "baseline": 0.4595,
+        "designed": 0.964,
+        "change": 0.5045
+      },
+      "QED": {
+        "baseline": 0.903,
+        "designed": 0.998,
+        "change": 0.0949999999999999
+      }
+    },
+    "C": {
+      "MW": {
+        "baseline": 0.729,
+        "designed": 0.0395,
+        "change": -0.6895
+      },
+      "LogP": {
+        "baseline": 0.7105,
+        "designed": 0.93,
+        "change": 0.2195
+      },
+      "TPSA": {
+        "baseline": 0.766,
+        "designed": 0.989,
+        "change": 0.2229999999999999
+      },
+      "HBD": {
+        "baseline": 0.9555,
+        "designed": 0.975,
+        "change": 0.0194999999999999
+      },
+      "QED": {
+        "baseline": 0.903,
+        "designed": 0.995,
+        "change": 0.0919999999999999
+      }
+    },
+    "D": {
+      "MW": {
+        "baseline": 0.729,
+        "designed": 0.102,
+        "change": -0.627
+      },
+      "LogP": {
+        "baseline": 0.6625,
+        "designed": 0.959,
+        "change": 0.2965
+      },
+      "TPSA": {
+        "baseline": 0.766,
+        "designed": 0.983,
+        "change": 0.2169999999999999
+      },
+      "HBD": {
+        "baseline": 0.9555,
+        "designed": 1.0,
+        "change": 0.0444999999999999
+      },
+      "HBA": {
+        "baseline": 0.989,
+        "designed": 0.9995,
+        "change": 0.0105
+      },
+      "RotB": {
+        "baseline": 0.885,
+        "designed": 1.0,
+        "change": 0.1149999999999999
+      },
+      "AromaticRings": {
+        "baseline": 0.4595,
+        "designed": 0.945,
+        "change": 0.4854999999999999
+      },
+      "QED": {
+        "baseline": 0.903,
+        "designed": 0.989,
+        "change": 0.0859999999999999
+      }
+    }
+  },
+  "functional_groups": {
+    "training": {
+      "carboxyl": 0.0,
+      "amide": 0.6796,
+      "ester": 0.0868,
+      "amine_1": 0.0692,
+      "amine_2": 0.5888,
+      "aromatic_N": 0.5104,
+      "aromatic_O": 0.1156,
+      "aromatic_S": 0.1442,
+      "halogen": 0.358,
+      "sulfonamide": 0.0832,
+      "nitrile": 0.0556,
+      "aldehyde": 0.0042,
+      "ketone": 0.691,
+      "ether": 0.4252,
+      "hydroxyl": 0.105,
+      "phenyl": 0.77,
+      "pyridine": 0.1442,
+      "trifluoromethyl": 0.0366
+    },
+    "baseline": {
+      "carboxyl": 0.002,
+      "amide": 0.595,
+      "ester": 0.0755,
+      "amine_1": 0.1,
+      "amine_2": 0.7235,
+      "aromatic_N": 0.1245,
+      "aromatic_O": 0.021,
+      "aromatic_S": 0.009,
+      "halogen": 0.341,
+      "sulfonamide": 0.038,
+      "nitrile": 0.037,
+      "aldehyde": 0.1075,
+      "ketone": 0.6385,
+      "ether": 0.3925,
+      "hydroxyl": 0.1295,
+      "phenyl": 0.353,
+      "pyridine": 0.07,
+      "trifluoromethyl": 0.0135
+    },
+    "designed_A": {
+      "carboxyl": 0.001,
+      "amide": 0.7295,
+      "ester": 0.0165,
+      "amine_1": 0.014,
+      "amine_2": 0.7295,
+      "aromatic_N": 0.1295,
+      "aromatic_O": 0.0005,
+      "aromatic_S": 0.0,
+      "halogen": 0.014,
+      "sulfonamide": 0.0005,
+      "nitrile": 0.0025,
+      "aldehyde": 0.2805,
+      "ketone": 0.9255,
+      "ether": 0.1215,
+      "hydroxyl": 0.0425,
+      "phenyl": 0.8615,
+      "pyridine": 0.1035,
+      "trifluoromethyl": 0.0
+    },
+    "designed_B": {
+      "carboxyl": 0.0,
+      "amide": 0.0,
+      "ester": 0.0,
+      "amine_1": 0.006,
+      "amine_2": 0.972,
+      "aromatic_N": 0.021,
+      "aromatic_O": 0.0,
+      "aromatic_S": 0.0,
+      "halogen": 0.0075,
+      "sulfonamide": 0.0,
+      "nitrile": 0.0,
+      "aldehyde": 0.0,
+      "ketone": 0.0,
+      "ether": 0.0145,
+      "hydroxyl": 0.003,
+      "phenyl": 0.9425,
+      "pyridine": 0.021,
+      "trifluoromethyl": 0.0
+    },
+    "designed_C": {
+      "carboxyl": 0.0005,
+      "amide": 0.987,
+      "ester": 0.016,
+      "amine_1": 0.005,
+      "amine_2": 0.9915,
+      "aromatic_N": 0.0235,
+      "aromatic_O": 0.0,
+      "aromatic_S": 0.0,
+      "halogen": 0.008,
+      "sulfonamide": 0.0075,
+      "nitrile": 0.0005,
+      "aldehyde": 0.017,
+      "ketone": 0.0905,
+      "ether": 0.023,
+      "hydroxyl": 0.006,
+      "phenyl": 0.945,
+      "pyridine": 0.0195,
+      "trifluoromethyl": 0.0
+    },
+    "designed_D": {
+      "carboxyl": 0.0,
+      "amide": 0.0015,
+      "ester": 0.0,
+      "amine_1": 0.013,
+      "amine_2": 0.07,
+      "aromatic_N": 0.9555,
+      "aromatic_O": 0.002,
+      "aromatic_S": 0.0005,
+      "halogen": 0.015,
+      "sulfonamide": 0.0,
+      "nitrile": 0.001,
+      "aldehyde": 0.0055,
+      "ketone": 0.004,
+      "ether": 0.946,
+      "hydroxyl": 0.004,
+      "phenyl": 0.008,
+      "pyridine": 0.9285,
+      "trifluoromethyl": 0.0
+    }
+  },
+  "sweep": [
+    {
+      "label": "baseline",
+      "n": 1000,
+      "design_score": 0.42311,
+      "design_median": 0.30063,
+      "uniqueness": 0.999,
+      "novelty": 1.0,
+      "int_diversity": 0.90601,
+      "n_scaffolds": 768,
+      "top10_share": 0.213,
+      "mean_SA": 4.4737,
+      "mean_QED": 0.59149,
+      "any_alert": 0.723,
+      "gate_pass": 0.977,
+      "campaign": "A",
+      "rl_steps": 0
+    },
+    {
+      "label": "rl10",
+      "n": 1000,
+      "design_score": 0.48203,
+      "design_median": 0.56944,
+      "uniqueness": 0.978,
+      "novelty": 1.0,
+      "int_diversity": 0.88364,
+      "n_scaffolds": 774,
+      "top10_share": 0.186,
+      "mean_SA": 3.82251,
+      "mean_QED": 0.672,
+      "any_alert": 0.52,
+      "gate_pass": 0.997,
+      "campaign": "A",
+      "rl_steps": 10
+    },
+    {
+      "label": "rl20",
+      "n": 1000,
+      "design_score": 0.38744,
+      "design_median": 0.27114,
+      "uniqueness": 0.965,
+      "novelty": 1.0,
+      "int_diversity": 0.88991,
+      "n_scaffolds": 846,
+      "top10_share": 0.112,
+      "mean_SA": 4.84166,
+      "mean_QED": 0.58731,
+      "any_alert": 0.705,
+      "gate_pass": 1.0,
+      "campaign": "A",
+      "rl_steps": 20
+    },
+    {
+      "label": "rl40",
+      "n": 1000,
+      "design_score": 0.41691,
+      "design_median": 0.30081,
+      "uniqueness": 0.993,
+      "novelty": 1.0,
+      "int_diversity": 0.86198,
+      "n_scaffolds": 952,
+      "top10_share": 0.058,
+      "mean_SA": 5.21161,
+      "mean_QED": 0.44399,
+      "any_alert": 0.939,
+      "gate_pass": 1.0,
+      "campaign": "A",
+      "rl_steps": 40
+    },
+    {
+      "label": "rl80",
+      "n": 1000,
+      "design_score": 0.63448,
+      "design_median": 0.74247,
+      "uniqueness": 0.757,
+      "novelty": 1.0,
+      "int_diversity": 0.76739,
+      "n_scaffolds": 444,
+      "top10_share": 0.474,
+      "mean_SA": 3.23134,
+      "mean_QED": 0.54893,
+      "any_alert": 0.949,
+      "gate_pass": 1.0,
+      "campaign": "A",
+      "rl_steps": 80
+    },
+    {
+      "label": "baseline",
+      "n": 1000,
+      "design_score": 0.36991,
+      "design_median": 0.29209,
+      "uniqueness": 0.999,
+      "novelty": 1.0,
+      "int_diversity": 0.90601,
+      "n_scaffolds": 768,
+      "top10_share": 0.213,
+      "mean_SA": 4.4737,
+      "mean_QED": 0.59149,
+      "any_alert": 0.723,
+      "gate_pass": 0.977,
+      "campaign": "B",
+      "rl_steps": 0
+    },
+    {
+      "label": "rl10",
+      "n": 1000,
+      "design_score": 0.66644,
+      "design_median": 0.80859,
+      "uniqueness": 0.746,
+      "novelty": 1.0,
+      "int_diversity": 0.83222,
+      "n_scaffolds": 390,
+      "top10_share": 0.488,
+      "mean_SA": 3.00397,
+      "mean_QED": 0.63717,
+      "any_alert": 0.362,
+      "gate_pass": 1.0,
+      "campaign": "B",
+      "rl_steps": 10
+    },
+    {
+      "label": "rl20",
+      "n": 1000,
+      "design_score": 0.78708,
+      "design_median": 0.86835,
+      "uniqueness": 0.364,
+      "novelty": 1.0,
+      "int_diversity": 0.64136,
+      "n_scaffolds": 201,
+      "top10_share": 0.748,
+      "mean_SA": 3.16656,
+      "mean_QED": 0.65971,
+      "any_alert": 0.321,
+      "gate_pass": 1.0,
+      "campaign": "B",
+      "rl_steps": 20
+    },
+    {
+      "label": "rl40",
+      "n": 1000,
+      "design_score": 0.85623,
+      "design_median": 0.90537,
+      "uniqueness": 0.521,
+      "novelty": 1.0,
+      "int_diversity": 0.72214,
+      "n_scaffolds": 296,
+      "top10_share": 0.575,
+      "mean_SA": 3.90348,
+      "mean_QED": 0.67212,
+      "any_alert": 0.414,
+      "gate_pass": 1.0,
+      "campaign": "B",
+      "rl_steps": 40
+    },
+    {
+      "label": "rl80",
+      "n": 1000,
+      "design_score": 0.91239,
+      "design_median": 0.93995,
+      "uniqueness": 0.119,
+      "novelty": 1.0,
+      "int_diversity": 0.2125,
+      "n_scaffolds": 85,
+      "top10_share": 0.913,
+      "mean_SA": 3.93596,
+      "mean_QED": 0.72228,
+      "any_alert": 0.044,
+      "gate_pass": 1.0,
+      "campaign": "B",
+      "rl_steps": 80
+    },
+    {
+      "label": "baseline",
+      "n": 1000,
+      "design_score": 0.05321,
+      "design_median": 0.0,
+      "uniqueness": 0.999,
+      "novelty": 1.0,
+      "int_diversity": 0.90601,
+      "n_scaffolds": 768,
+      "top10_share": 0.213,
+      "mean_SA": 4.4737,
+      "mean_QED": 0.59149,
+      "any_alert": 0.723,
+      "gate_pass": 0.077,
+      "campaign": "D",
+      "rl_steps": 0
+    },
+    {
+      "label": "rl10",
+      "n": 1000,
+      "design_score": 0.23441,
+      "design_median": 0.0,
+      "uniqueness": 0.975,
+      "novelty": 1.0,
+      "int_diversity": 0.91768,
+      "n_scaffolds": 895,
+      "top10_share": 0.092,
+      "mean_SA": 5.60848,
+      "mean_QED": 0.56188,
+      "any_alert": 0.766,
+      "gate_pass": 0.388,
+      "campaign": "D",
+      "rl_steps": 10
+    },
+    {
+      "label": "rl20",
+      "n": 1000,
+      "design_score": 0.1452,
+      "design_median": 0.0,
+      "uniqueness": 0.996,
+      "novelty": 1.0,
+      "int_diversity": 0.89517,
+      "n_scaffolds": 893,
+      "top10_share": 0.09,
+      "mean_SA": 6.73718,
+      "mean_QED": 0.4699,
+      "any_alert": 0.739,
+      "gate_pass": 0.286,
+      "campaign": "D",
+      "rl_steps": 20
+    },
+    {
+      "label": "rl40",
+      "n": 1000,
+      "design_score": 0.53739,
+      "design_median": 0.65007,
+      "uniqueness": 0.539,
+      "novelty": 1.0,
+      "int_diversity": 0.55272,
+      "n_scaffolds": 127,
+      "top10_share": 0.838,
+      "mean_SA": 5.48405,
+      "mean_QED": 0.5903,
+      "any_alert": 0.515,
+      "gate_pass": 0.848,
+      "campaign": "D",
+      "rl_steps": 40
+    },
+    {
+      "label": "rl80",
+      "n": 1000,
+      "design_score": 0.61208,
+      "design_median": 0.69252,
+      "uniqueness": 0.257,
+      "novelty": 1.0,
+      "int_diversity": 0.38056,
+      "n_scaffolds": 93,
+      "top10_share": 0.884,
+      "mean_SA": 5.72896,
+      "mean_QED": 0.46764,
+      "any_alert": 0.974,
+      "gate_pass": 0.915,
+      "campaign": "D",
+      "rl_steps": 80
+    }
+  ],
+  "sweep_campaigns": [
+    "A",
+    "B",
+    "D"
+  ],
+  "sweep_steps": [
+    0,
+    10,
+    20,
+    40,
+    80
+  ],
+  "top_candidates": {
+    "A": [
+      {
+        "smiles": "Cc1ccccc1C(=O)NC=CCl",
+        "QED": 0.7719,
+        "SAscore": 2.4888,
+        "synth_score": 0.8755,
+        "composite": 0.8589,
+        "leverage": 0.0102
+      },
+      {
+        "smiles": "Cc1ccccc1C(=O)Nc1ccncc1",
+        "QED": 0.831,
+        "SAscore": 1.5335,
+        "synth_score": 0.809,
+        "composite": 0.856,
+        "leverage": 0.0142
+      },
+      {
+        "smiles": "C=CNCC(=O)Nc1cccnc1C",
+        "QED": 0.7479,
+        "SAscore": 2.5192,
+        "synth_score": 0.8714,
+        "composite": 0.8477,
+        "leverage": 0.0118
+      },
+      {
+        "smiles": "C=CNC(=O)c1ccccc1",
+        "QED": 0.6753,
+        "SAscore": 1.9575,
+        "synth_score": 0.9335,
+        "composite": 0.8435,
+        "leverage": 0.0112
+      },
+      {
+        "smiles": "O=C(Nc1ccncc1)C1=CC=CC=CC1",
+        "QED": 0.8178,
+        "SAscore": 2.6076,
+        "synth_score": 0.7643,
+        "composite": 0.8328,
+        "leverage": 0.0097
+      }
+    ],
+    "B": [
+      {
+        "smiles": "C=C=CNCc1ccccc1C",
+        "QED": 0.6676,
+        "SAscore": 2.8126,
+        "synth_score": 0.8741,
+        "composite": 0.8167,
+        "leverage": 0.0105
+      },
+      {
+        "smiles": "C=C=CNCc1ccccc1C",
+        "QED": 0.6676,
+        "SAscore": 2.8126,
+        "synth_score": 0.8741,
+        "composite": 0.8167,
+        "leverage": 0.0105
+      },
+      {
+        "smiles": "C=C=CNCc1ccccc1C",
+        "QED": 0.6676,
+        "SAscore": 2.8126,
+        "synth_score": 0.8741,
+        "composite": 0.8167,
+        "leverage": 0.0105
+      },
+      {
+        "smiles": "C=C=CNCc1ccccc1C",
+        "QED": 0.6676,
+        "SAscore": 2.8126,
+        "synth_score": 0.8741,
+        "composite": 0.8167,
+        "leverage": 0.0105
+      },
+      {
+        "smiles": "C=C=CNCc1ccccc1C",
+        "QED": 0.6676,
+        "SAscore": 2.8126,
+        "synth_score": 0.8741,
+        "composite": 0.8167,
+        "leverage": 0.0105
+      }
+    ],
+    "C": [
+      {
+        "smiles": "Cc1ccccc1NC(=O)N1C=CN(C)C1",
+        "QED": 0.7824,
+        "SAscore": 2.5423,
+        "synth_score": 0.7937,
+        "composite": 0.8304,
+        "leverage": 0.0115
+      },
+      {
+        "smiles": "Cc1ccccc1NC(=O)N1C=CC(C)NC1",
+        "QED": 0.7785,
+        "SAscore": 3.2983,
+        "synth_score": 0.7296,
+        "composite": 0.8032,
+        "leverage": 0.012
+      },
+      {
+        "smiles": "COC(=O)NC1NC(=O)[CH]N1c1ccccc1C",
+        "QED": 0.8092,
+        "SAscore": 3.4463,
+        "synth_score": 0.6918,
+        "composite": 0.8004,
+        "leverage": 0.01
+      },
+      {
+        "smiles": "Cc1ccccc1NC(=O)NCn1cc[pH]c1=O",
+        "QED": 0.8888,
+        "SAscore": 3.4783,
+        "synth_score": 0.5841,
+        "composite": 0.7892,
+        "leverage": 0.0114
+      },
+      {
+        "smiles": "Cc1ccccc1N1C(=O)NNC1NC1CC1",
+        "QED": 0.7302,
+        "SAscore": 3.3287,
+        "synth_score": 0.726,
+        "composite": 0.7825,
+        "leverage": 0.0123
+      }
+    ],
+    "D": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "campaign": "C",
+  "title": "Analogue design (celecoxib reference)",
+  "baseline_mean": 0.38653053863097075,
+  "designed_mean": 0.7100903099425955,
+  "baseline_median": 0.4503197038725275,
+  "designed_median": 0.7388054814982024,
+  "designed_max": 0.9070392897648458,
+  "rl_first": 0.3438167870044708,
+  "rl_last": 0.7121509313583374,
+  "rl_best_overall": 0.9621041417121887,
+  "n_designed": 2000,
+  "n_designed_valid": 2000,
+  "baseline_gate_pass": 0.9695,
+  "designed_gate_pass": 1.0,
+  "minutes": 1.1550851464271545
+}

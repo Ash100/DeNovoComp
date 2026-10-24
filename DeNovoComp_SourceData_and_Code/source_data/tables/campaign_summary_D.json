@@ -1,0 +1,17 @@
+{
+  "campaign": "D",
+  "title": "Substructure-constrained (pyridine required)",
+  "baseline_mean": 0.04610218358028776,
+  "designed_mean": 0.6207741187196577,
+  "baseline_median": 0.0,
+  "designed_median": 0.7040823697800588,
+  "designed_max": 0.8926670629638008,
+  "rl_first": 0.015560819767415524,
+  "rl_last": 0.6142865419387817,
+  "rl_best_overall": 0.9872576594352722,
+  "n_designed": 2000,
+  "n_designed_valid": 2000,
+  "baseline_gate_pass": 0.0665,
+  "designed_gate_pass": 0.9285,
+  "minutes": 1.0874312241872153
+}

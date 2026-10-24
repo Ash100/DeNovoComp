@@ -1,0 +1,17 @@
+{
+  "campaign": "A",
+  "title": "General drug-like",
+  "baseline_mean": 0.4121569287415487,
+  "designed_mean": 0.637917557039573,
+  "baseline_median": 0.2948164313633608,
+  "designed_median": 0.7371562062739052,
+  "designed_max": 0.9980360988109014,
+  "rl_first": 0.3571985363960266,
+  "rl_last": 0.6984666585922241,
+  "rl_best_overall": 0.999949038028717,
+  "n_designed": 2000,
+  "n_designed_valid": 2000,
+  "baseline_gate_pass": 0.9695,
+  "designed_gate_pass": 1.0,
+  "minutes": 1.7860576470692953
+}

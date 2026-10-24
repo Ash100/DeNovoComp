@@ -1,0 +1,22 @@
+{
+  "raw_smiles": 249455,
+  "parse_or_size_dropped": 0,
+  "after_canon": 249455,
+  "after_dedup": 249455,
+  "selfies_encodable": 249455,
+  "after_maxlen": 249455,
+  "final_training": 25000,
+  "vocab_size": 80,
+  "seq_len": 74,
+  "selfies_len_p50": 37.0,
+  "selfies_len_p99": 58.0,
+  "selfies_len_max": 72,
+  "train_desc_means": {
+    "MW": 333.1581952000001,
+    "LogP": 2.489231354000001,
+    "TPSA": 65.357522,
+    "HBD": 1.2304,
+    "HBA": 3.739,
+    "QED": 0.7328136229567901
+  }
+}
